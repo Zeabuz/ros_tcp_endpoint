@@ -143,13 +143,14 @@ class TcpServer(Node):
             MultiThreadedExecutor allows us to set the number of threads
             needed as well as the nodes that need to be spun.
         """
-        num_threads = (
-            len(self.publishers_table.keys())
-            + len(self.subscribers_table.keys())
-            + len(self.ros_services_table.keys())
-            + len(self.unity_services_table.keys())
-            + 1
-        )
+        # num_threads = (
+        #     len(self.publishers_table.keys())
+        #     + len(self.subscribers_table.keys())
+        #     + len(self.ros_services_table.keys())
+        #     + len(self.unity_services_table.keys())
+        #     + 1
+        # )
+        num_threads = self.connections + 1
         executor = MultiThreadedExecutor(num_threads)
 
         executor.add_node(self)
